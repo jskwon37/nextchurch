@@ -64,10 +64,10 @@
             justify-content: flex-start;
         }
 
-        /* 헤더 로고 이미지 스타일 (황금색 필터 적용) */
+        /* 헤더 좌측 상단 로고 이미지 (흰색으로 변경) */
         header .logo img {
-            height: 30px; /* 네비게이션에 맞는 적절한 높이 */
-            filter: brightness(0) saturate(100%) invert(86%) sepia(50%) saturate(2256%) hue-rotate(338deg) brightness(101%) contrast(106%);
+            height: 30px; 
+            filter: brightness(0) invert(100%);
         }
 
         header nav ul {
@@ -89,9 +89,9 @@
             margin: 50px 0;
         }
 
-        /* 영웅 제목 이미지 스타일 (황금색 필터 적용) */
+        /* 중앙 메인 타이틀 로고 이미지 (황금색 필터 적용) */
         header .hero-content h1 img {
-            height: 100px; /* 영웅 섹션에 맞는 큰 높이 */
+            height: 100px; 
             filter: brightness(0) saturate(100%) invert(86%) sepia(50%) saturate(2256%) hue-rotate(338deg) brightness(101%) contrast(106%);
             margin: 10px 0;
         }
@@ -132,7 +132,7 @@
         .seminar-banner .vs-image {
             width: 400px;
             height: 200px;
-            background-color: #eee; /* 건물 이미지 플레이스홀더 */
+            background-color: #eee;
             border: 2px solid var(--white);
             display: flex;
             justify-content: center;
@@ -173,7 +173,7 @@
         }
 
         .speaker-card {
-            width: calc(20% - 24px); /* 5열 그리드 */
+            width: calc(20% - 24px);
             background-color: var(--white);
             border-radius: 10px;
             overflow: hidden;
@@ -187,7 +187,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            background-color: #eee; /* 연사 사진 플레이스홀더 */
+            background-color: #eee;
             margin: 0 auto 15px;
             display: flex;
             justify-content: center;
@@ -241,7 +241,7 @@
         .faq-card .icon {
             width: 50px;
             height: 50px;
-            background-color: #eee; /* 아이콘 플레이스홀더 */
+            background-color: #eee;
             margin: 0 auto 15px;
             display: flex;
             justify-content: center;
@@ -275,4 +275,385 @@
         .timetable-item .session {
             flex: 1;
             padding-left: 20px;
-        }http://googleusercontent.com/image_generation_content/0
+        }
+        
+        .timetable-item .speaker-list {
+            width: 200px;
+            text-align: right;
+            color: var(--text-gray);
+        }
+
+        .timetable-item.highlight {
+            background-color: #FFFDE7;
+        }
+
+        /* 솔루션 배너 섹션 */
+        .solution-banner {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .solution-banner h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+
+        .solution-banner h2 span {
+            color: var(--gold);
+        }
+
+        .solution-banner p {
+            color: #CCCCCC;
+        }
+
+        /* 리뷰 섹션 */
+        .reviews {
+            padding: 60px 0;
+        }
+
+        .reviews-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .review-card {
+            width: calc(25% - 15px);
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        .review-card .percentage {
+            font-size: 48px;
+            font-weight: bold;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+        }
+
+        .review-card .percentage span {
+            font-size: 24px;
+        }
+
+        .review-card .detail {
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* 위치 섹션 */
+        .location {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: #eee;
+            margin-top: 30px;
+            border: 1px solid #ddd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #aaa;
+            font-size: 24px;
+        }
+
+        /* 푸터 섹션 */
+        footer {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+
+        footer .cta-final h3 {
+            font-size: 36px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        footer .cta-final .cta-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        footer .info {
+            font-size: 12px;
+            color: #CCCCCC;
+        }
+
+        /* 반응형 스타일 */
+        @media (max-width: 992px) {
+            .speaker-card {
+                width: calc(33.33% - 20px);
+            }
+            .faq-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .reviews-grid {
+                flex-wrap: wrap;
+            }
+            .review-card {
+                width: calc(50% - 10px);
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .speaker-card {
+                width: calc(50% - 15px);
+            }
+            .faq-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .seminar-banner .vs-images {
+                flex-direction: column;
+            }
+            header .hero-content .cta-group, footer .cta-final .cta-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .timetable-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .timetable-item .date, .timetable-item .speaker-list {
+                width: 100%;
+                text-align: left;
+                padding-left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 헤더 섹션 -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <!-- 사용자가 업로드한 로고 이미지 연동 -->
+                    <img src="1746874225726339457.jpeg" alt="Next Church Logo">
+                </div>
+                <ul>
+                    <li><a href="#">로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                </ul>
+            </nav>
+            <div class="hero-content">
+                <h1>
+                    <!-- 메인 타이틀 위치의 로고 이미지 (황금색 필터 적용됨) -->
+                    <img src="1746874225726339457.jpeg" alt="Next Church Logo">
+                </h1>
+                <h2>신축 vs 리모델링</h2>
+                <div class="cta-group">
+                    <a href="#" class="btn btn-gold">신축 vs 리모델링 알아보기</a>
+                    <a href="#" class="btn btn-gold">세미나 신청하기</a>
+                </div>
+                <div class="scroll-icon">▼</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 세미나 배너 섹션 -->
+    <section class="seminar-banner">
+        <div class="container">
+            <h3>2026 대한민국 교회 공간 현대화 세미나</h3>
+            <h1>NEXT CHURCH : 신축 vs 리모델링</h1>
+            <p>#현장답사 #실무전문가 #지역별사례 #Q&A</p>
+            <p>2026. 10. 25(화) 10:00 - 16:00 | 서울시 송파구 잠실동 잠실타워 4F 세미나룸</p>
+            <div class="vs-images">
+                <div class="vs-image">
+                    <div class="vs-tag">REMODELING</div>
+                    [건물 이미지 Placeholder]
+                </div>
+                <div class="vs-text">VS</div>
+                <div class="vs-image">
+                    <div class="vs-tag">신축</div>
+                    [건물 이미지 Placeholder]
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 스피커 섹션 -->
+    <section class="speakers">
+        <div class="container">
+            <h2>최고의 전문가들과 함께하는 실질적 가이드</h2>
+            <div class="speakers-grid">
+                <!-- 스피커 카드 5개 -->
+                <div class="speaker-card">
+                    <div class="speaker-img">P</div>
+                    <div class="speaker-name">김교회 원장</div>
+                    <div class="speaker-info">대한교회공간연구소</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-img">P</div>
+                    <div class="speaker-name">박리모델 대표</div>
+                    <div class="speaker-info">리모델링건축사무소</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-img">P</div>
+                    <div class="speaker-name">이신축 소장</div>
+                    <div class="speaker-info">신축건축그룹</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-img">P</div>
+                    <div class="speaker-name">한실무 대표</div>
+                    <div class="speaker-info">실무컨설팅그룹</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-img">P</div>
+                    <div class="speaker-name">최QA 대표</div>
+                    <div class="speaker-info">교회건축비교상담소</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 질문 / 인트로 섹션 -->
+    <section class="intro-section">
+        <div class="container">
+            <h2>우리 교회, 신축 할까 리모델링 할까?</h2>
+            <p>막막한 교회 공간 문제, 실무 전문가들이 명쾌하게 해결해 드립니다.</p>
+        </div>
+    </section>
+
+    <!-- FAQ 카드 섹션 -->
+    <section class="faq">
+        <div class="container">
+            <div class="faq-grid">
+                <div class="faq-card">
+                    <div class="icon">Q1</div>
+                    <p>우리 교회의 핵심 과제는?</p>
+                </div>
+                <div class="faq-card">
+                    <div class="icon">Q2</div>
+                    <p>우리 교회의 현주소는?</p>
+                </div>
+                <div class="faq-card">
+                    <div class="icon">Q3</div>
+                    <p>가장 합리적인 방법은 무엇인가요?</p>
+                </div>
+                <div class="faq-card">
+                    <div class="icon">Q4</div>
+                    <p>지역 교회의 현황과 성공 사례는?</p>
+                </div>
+                <div class="faq-card">
+                    <div class="icon">Q5</div>
+                    <p>Q&A 무엇이든 물어보세요!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 타임테이블 섹션 -->
+    <section class="timetable">
+        <div class="container">
+            <h2>프로그램 타임테이블</h2>
+            <div class="timetable-list">
+                <div class="timetable-item">
+                    <div class="date">10/25</div>
+                    <div class="session">[세션 1] 교회 공간의 미래적 가치</div>
+                    <div class="speaker-list">김교회 원장</div>
+                </div>
+                <div class="timetable-item">
+                    <div class="date">11/1</div>
+                    <div class="session">[세션 2] 성공적인 리모델링 프로세스</div>
+                    <div class="speaker-list">박리모델 대표</div>
+                </div>
+                <div class="timetable-item">
+                    <div class="date">11/8</div>
+                    <div class="session">[세션 3] 신축 프로젝트의 핵심</div>
+                    <div class="speaker-list">이신축 소장</div>
+                </div>
+                <div class="timetable-item">
+                    <div class="date">11/15</div>
+                    <div class="session">[세션 4] 실무 사례 비교 및 분석</div>
+                    <div class="speaker-list">한실무 대표</div>
+                </div>
+                <div class="timetable-item">
+                    <div class="date">11/22</div>
+                    <div class="session">[Q&A] 종합 질의응답</div>
+                    <div class="speaker-list">최QA 대표</div>
+                </div>
+                <div class="timetable-item highlight">
+                    <div class="date">11/29</div>
+                    <div class="session">[현장답사] 실제 사례 현장 방문 및 상담</div>
+                    <div class="speaker-list">(별도 공지)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 솔루션 배너 섹션 -->
+    <section class="solution-banner">
+        <div class="container">
+            <h2>끝까지 함께 하겠습니다. 우리 교회를 위한 <span>맞춤형 솔루션입니다.</span></h2>
+            <p>(작은 글씨: 세미나 신청 고객을 위한 특별한 혜택)</p>
+        </div>
+    </section>
+
+    <!-- 리뷰 섹션 -->
+    <section class="reviews">
+        <div class="container">
+            <h2>지난 세미나 참가자들의 만족도</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="percentage">95<span>%</span></div>
+                    <div class="detail">콘텐츠 만족도</div>
+                </div>
+                <div class="review-card">
+                    <div class="percentage">92<span>%</span></div>
+                    <div class="detail">강사진 만족도</div>
+                </div>
+                <div class="review-card">
+                    <div class="percentage">97<span>%</span></div>
+                    <div class="detail">강의 품질</div>
+                </div>
+                <div class="review-card">
+                    <div class="percentage">100<span>%</span></div>
+                    <div class="detail">재참석 의향</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 위치 섹션 -->
+    <section class="location">
+        <div class="container">
+            <h2>오시는 길</h2>
+            <p>서울시 송파구 잠실동 잠실타워 4F 세미나룸</p>
+            <div class="map-placeholder">
+                [지도 이미지 Placeholder]
+            </div>
+        </div>
+    </section>
+
+    <!-- 푸터 섹션 -->
+    <footer>
+        <div class="container">
+            <div class="cta-final">
+                <h3>다음 세대를 위한 교회 공간,<br>지금 준비하세요.</h3>
+                <div class="cta-group">
+                    <a href="#" class="btn btn-gold">신축 vs 리모델링 알아보기</a>
+                    <a href="#" class="btn btn-gold">세미나 신청하기</a>
+                </div>
+            </div>
+            <div class="info">
+                (주)대한교회공간연구소 | 대표 김교회 | 사업자등록번호 123-45-67890<br>
+                서울시 송파구 잠실동 1234-5 | TEL 02-1234-5678 | FAX 02-987-6543 | EMAIL info@nextchurch.com<br>
+                Copyright © 2026 NEXT CHURCH All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
