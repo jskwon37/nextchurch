@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next Church Seminar - 빌더 모드</title>
+    <title>Next Church Seminar - 프로 빌더 모드</title>
     <style>
         /* 기본 테마 색상 변수 */
         :root {
@@ -48,57 +48,43 @@
             transition: background-color 0.3s ease;
             cursor: pointer;
         }
+        .btn-gold { background-color: var(--gold); color: var(--dark-blue); }
+        .btn-gold:hover { background-color: #E6AC00; }
 
-        .btn-gold {
-            background-color: var(--gold);
-            color: var(--dark-blue);
-        }
-
-        .btn-gold:hover {
-            background-color: #E6AC00;
+        /* 공통 섹션 배경 속성 */
+        section, header, footer, .top-bar {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: padding 0.2s ease, background-color 0.3s ease;
         }
 
         /* 상단 네비게이션 */
         .top-bar {
             background-color: var(--white);
             border-bottom: 1px solid #eaeaea;
-            padding: 15px 0;
+            padding: 15px 0; /* 초기 패딩 */
             position: sticky;
             top: 0;
             z-index: 90;
-            background-size: cover;
-            background-position: center;
         }
-
         .top-bar .container { display: flex; justify-content: space-between; align-items: center; }
-        
-        .top-bar .logo img {
-            height: 35px; /* 초기 높이, 자바스크립트로 조절 가능 */
-            display: block;
-            transition: height 0.2s;
-        }
-
+        .top-bar .logo img { height: 35px; display: block; transition: height 0.2s, width 0.2s; object-fit: contain; }
         .top-bar .nav-menu ul { display: flex; gap: 40px; list-style: none; margin: 0; padding: 0; }
-        .top-bar .nav-menu a { text-decoration: none; color: #333; font-weight: bold; font-size: 16px; transition: color 0.3s ease; }
-        .top-bar .nav-menu a:hover { color: var(--blue-accent); }
-        .top-bar .btn { padding: 8px 20px; font-size: 14px; }
+        .top-bar .nav-menu a { text-decoration: none; color: #333; font-weight: bold; font-size: 16px; }
 
         /* 메인 히어로 섹션 */
         .hero-section {
             background-color: var(--dark-blue);
             color: var(--white);
-            padding: 60px 0;
+            padding-top: 60px;
+            padding-bottom: 60px;
             text-align: center;
-            background-size: cover;
-            background-position: center;
         }
-
-        .hero-section .hero-content { margin: 30px 0; }
         .hero-section .hero-content h1 img {
-            height: 100px; /* 초기 높이 */
+            height: 100px; 
             filter: brightness(0) saturate(100%) invert(86%) sepia(50%) saturate(2256%) hue-rotate(338deg) brightness(101%) contrast(106%);
-            margin: 10px 0;
-            transition: height 0.2s;
+            margin: 10px 0; transition: height 0.2s, width 0.2s; object-fit: contain;
         }
         .hero-section .hero-content h2 { font-size: 32px; font-weight: normal; margin-bottom: 30px; }
         .hero-section .hero-content .cta-group { display: flex; justify-content: center; gap: 20px; }
@@ -107,146 +93,72 @@
         .seminar-banner {
             background-color: var(--blue-accent);
             color: var(--white);
-            padding: 40px 0;
+            padding-top: 40px;
+            padding-bottom: 40px;
             text-align: center;
-            background-size: cover;
-            background-position: center;
         }
-
         .seminar-banner .vs-images { display: flex; justify-content: center; align-items: center; gap: 40px; margin-top: 30px; }
         .seminar-banner .vs-image {
-            width: 400px;
-            height: 250px;
-            background-color: #eee;
-            border: 2px solid var(--white);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ccc;
-            position: relative;
-            overflow: hidden;
+            width: 400px; height: 250px; background-color: #eee; border: 2px solid var(--white);
+            display: flex; justify-content: center; align-items: center; color: #ccc; position: relative; overflow: hidden;
         }
-        .seminar-banner .vs-image img {
-            width: 100%; /* 너비 기본 100% (편집기로 조절) */
-            height: 100%;
-            object-fit: cover;
-            display: none;
-            transition: width 0.2s;
-        }
+        .seminar-banner .vs-image img { width: 100%; height: 100%; object-fit: cover; display: none; transition: width 0.2s, height 0.2s; }
         .seminar-banner .vs-text { font-size: 24px; font-weight: bold; color: var(--gold); }
         .seminar-banner .vs-tag {
             background-color: var(--gold); color: var(--dark-blue); padding: 5px 10px; border-radius: 3px; font-size: 14px; font-weight: bold; position: absolute; top: 10px; left: 10px; z-index: 2;
         }
 
-        /* 공통 섹션 설정 */
-        section { background-size: cover; background-position: center; background-repeat: no-repeat; }
-        
-        .speakers, .faq, .timetable, .intro-section { padding: 60px 0; }
-        .speakers, .faq { background-color: var(--bg-gray); }
-
+        /* 스피커 섹션 */
+        .speakers { padding-top: 60px; padding-bottom: 60px; background-color: var(--bg-gray); }
         .speakers-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: space-between; }
         .speaker-card { width: calc(20% - 24px); background-color: var(--white); border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; padding: 20px; box-sizing: border-box; }
-        .speaker-img { width: 100px; height: 100px; border-radius: 50%; background-color: #eee; margin: 0 auto 15px; display: flex; justify-content: center; align-items: center; color: #ccc; font-size: 24px; }
+        .speaker-img-wrapper { width: 100px; height: 100px; margin: 0 auto 15px; border-radius: 50%; background-color: #ddd; overflow: hidden; display: flex; justify-content: center; align-items: center; color: #aaa; font-size: 24px; transition: width 0.2s, height 0.2s;}
+        .speaker-img-wrapper img { width: 100%; height: 100%; object-fit: cover; display: none; }
         
-        .intro-section h2 { font-size: 32px; margin-bottom: 20px; text-align: center; }
-        .intro-section p { text-align: center; }
-
+        /* 인트로 및 타임테이블 */
+        .intro-section { padding-top: 60px; padding-bottom: 60px; text-align: center; }
+        .timetable { padding-top: 60px; padding-bottom: 60px; }
         .timetable-list { margin-top: 30px; }
         .timetable-item { display: flex; align-items: center; padding: 15px 0; border-bottom: 1px solid #ddd; }
         .timetable-item .date { width: 100px; font-weight: bold; color: var(--dark-blue); }
         .timetable-item .session { flex: 1; padding-left: 20px; }
 
-        footer { background-color: var(--dark-blue); color: var(--white); padding: 60px 0 20px; text-align: center; background-size: cover; background-position: center;}
+        /* 푸터 */
+        footer { background-color: var(--dark-blue); color: var(--white); padding-top: 60px; padding-bottom: 20px; text-align: center; }
         footer .cta-final h3 { font-size: 36px; color: var(--gold); margin-bottom: 20px; }
-        footer .cta-final .cta-group { display: flex; justify-content: center; gap: 20px; margin-bottom: 40px; }
-        footer .info { font-size: 12px; color: #CCCCCC; }
 
         /* ========================================= */
-        /* 아임웹 스타일 미니 빌더 UI */
+        /* 디테일 프로 빌더 UI */
         /* ========================================= */
         .builder-panel {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 320px;
-            max-height: calc(100vh - 40px);
-            overflow-y: auto;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid #ddd;
-            z-index: 9999;
-            display: none;
-            font-family: 'Apple SD Gothic Neo', sans-serif;
+            position: fixed; top: 20px; right: 20px; width: 340px; max-height: calc(100vh - 40px); overflow-y: auto;
+            background-color: #fff; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); border: 1px solid #ddd; z-index: 9999; display: none; font-family: sans-serif;
         }
-
         .builder-panel::-webkit-scrollbar { width: 6px; }
         .builder-panel::-webkit-scrollbar-thumb { background: #bbb; border-radius: 3px; }
-
-        .builder-header {
-            background-color: #222;
-            color: #fff;
-            padding: 15px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 15px;
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
-
+        .builder-header { background-color: #222; color: #fff; padding: 15px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; font-size: 15px; position: sticky; top: 0; z-index: 10; }
         .builder-header button { background: none; border: none; color: #fff; cursor: pointer; font-size: 18px; }
-        
         .builder-body { padding: 15px; }
-        
-        .builder-section {
-            background-color: #f8f9fa;
-            border: 1px solid #e9ecef;
-            border-radius: 6px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .builder-section-title {
-            font-weight: bold;
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 12px;
-            font-size: 14px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 8px;
-        }
-
-        .control-group { margin-bottom: 12px; display: flex; flex-direction: column; gap: 5px; }
+        .builder-section { background-color: #f8f9fa; border: 1px solid #e9ecef; border-radius: 6px; padding: 15px; margin-bottom: 15px; }
+        .builder-section-title { font-weight: bold; color: #333; margin-top: 0; margin-bottom: 12px; font-size: 14px; border-bottom: 1px solid #ddd; padding-bottom: 8px; }
+        .control-group { margin-bottom: 15px; display: flex; flex-direction: column; gap: 5px; }
         .control-group label { font-size: 12px; color: #666; font-weight: bold; }
-        .control-group select, .control-group input[type="file"] {
-            width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box;
-        }
+        .control-group select, .control-group input[type="file"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 12px; box-sizing: border-box; }
         .control-group input[type="color"] { width: 100%; height: 35px; border: none; cursor: pointer; padding: 0;}
         .control-group input[type="range"] { width: 100%; cursor: pointer;}
         .value-display { font-size: 11px; color: #999; text-align: right; margin-top: -5px; }
-
         .toggle-btn { width: 100%; padding: 12px; background-color: #0056B3; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer; font-size: 14px; transition: 0.2s;}
         .toggle-btn.active { background-color: #dc3545; }
-
-        .open-builder-btn {
-            position: fixed; bottom: 30px; right: 30px; background-color: #222; color: #fff; border: none; border-radius: 50px; padding: 15px 25px; font-size: 16px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.4); cursor: pointer; z-index: 9998; transition: transform 0.2s; display: flex; align-items: center; gap: 8px;
-        }
+        .open-builder-btn { position: fixed; bottom: 30px; right: 30px; background-color: #222; color: #fff; border: none; border-radius: 50px; padding: 15px 25px; font-size: 16px; font-weight: bold; box-shadow: 0 4px 15px rgba(0,0,0,0.4); cursor: pointer; z-index: 9998; transition: transform 0.2s; display: flex; align-items: center; gap: 8px; }
         .open-builder-btn:hover { transform: scale(1.05); }
-
     </style>
 </head>
 <body id="main-body">
 
-    <!-- 디자인 대상 구역(섹션)에 ID 부여 -->
-    
-    <!-- 상단 네비게이션 -->
     <div class="top-bar" id="sec-header">
         <div class="container">
             <div class="logo">
-                <a href="#"><img id="img-top-logo" src="로고-07.png" alt="Next Church Logo"></a>
+                <img id="img-top-logo" src="로고-07.png" alt="Next Church Logo">
             </div>
             <nav class="nav-menu">
                 <ul>
@@ -262,7 +174,6 @@
         </div>
     </div>
 
-    <!-- 메인 타이틀 -->
     <header class="hero-section" id="sec-hero">
         <div class="container">
             <div class="hero-content">
@@ -270,35 +181,75 @@
                 <h2>신축 vs 리모델링</h2>
                 <div class="cta-group">
                     <a href="#" class="btn btn-gold">신축 vs 리모델링 알아보기</a>
-                    <a href="#" class="btn btn-gold">세미나 신청하기</a>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- 세미나 배너 섹션 -->
     <section class="seminar-banner" id="sec-banner">
         <div class="container">
             <h3>2026 대한민국 교회 공간 현대화 세미나</h3>
             <h1>NEXT CHURCH : 신축 vs 리모델링</h1>
-            <p>#현장답사 #실무전문가 #지역별사례 #Q&A</p>
             <div class="vs-images">
                 <div class="vs-image">
                     <div class="vs-tag">REMODELING</div>
                     <img id="img-remodeling" src="">
-                    <span id="img-remodeling-placeholder">[배너 이미지 등록]</span>
+                    <span id="txt-remodeling">배너 1</span>
                 </div>
                 <div class="vs-text">VS</div>
                 <div class="vs-image">
                     <div class="vs-tag">신축</div>
                     <img id="img-newbuild" src="">
-                    <span id="img-newbuild-placeholder">[배너 이미지 등록]</span>
+                    <span id="txt-newbuild">배너 2</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 인트로 섹션 -->
+    <section class="speakers" id="sec-speakers">
+        <div class="container">
+            <h2>최고의 전문가들과 함께하는 실질적 가이드</h2>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-img-wrapper" id="wrap-speaker-1">
+                        <img id="img-speaker-1" src="">
+                        <span id="txt-speaker-1">P</span>
+                    </div>
+                    <div class="speaker-name">김교회 원장</div>
+                    <div class="speaker-info">대한교회공간연구소</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-img-wrapper" id="wrap-speaker-2">
+                        <img id="img-speaker-2" src="">
+                        <span id="txt-speaker-2">P</span>
+                    </div>
+                    <div class="speaker-name">박리모델 대표</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-img-wrapper" id="wrap-speaker-3">
+                        <img id="img-speaker-3" src="">
+                        <span id="txt-speaker-3">P</span>
+                    </div>
+                    <div class="speaker-name">이신축 소장</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-img-wrapper" id="wrap-speaker-4">
+                        <img id="img-speaker-4" src="">
+                        <span id="txt-speaker-4">P</span>
+                    </div>
+                    <div class="speaker-name">한실무 대표</div>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-img-wrapper" id="wrap-speaker-5">
+                        <img id="img-speaker-5" src="">
+                        <span id="txt-speaker-5">P</span>
+                    </div>
+                    <div class="speaker-name">최QA 대표</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="intro-section" id="sec-intro">
         <div class="container">
             <h2>우리 교회, 신축 할까 리모델링 할까?</h2>
@@ -306,27 +257,28 @@
         </div>
     </section>
 
-    <!-- 푸터 -->
+    <section class="timetable" id="sec-timetable">
+        <div class="container">
+            <h2>프로그램 타임테이블</h2>
+            <div class="timetable-list">
+                <div class="timetable-item">
+                    <div class="date">10/25</div>
+                    <div class="session">[세션 1] 교회 공간의 미래적 가치</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer id="sec-footer">
         <div class="container">
             <div class="cta-final">
-                <h3>다음 세대를 위한 교회 공간,<br>지금 준비하세요.</h3>
-                <div class="cta-group">
-                    <a href="#" class="btn btn-gold">세미나 신청하기</a>
-                </div>
-            </div>
-            <div class="info">
-                Copyright © 2026 NEXT CHURCH All Rights Reserved.
+                <h3>다음 세대를 위한 교회 공간, 지금 준비하세요.</h3>
             </div>
         </div>
     </footer>
 
-    <!-- ========================================= -->
-    <!-- 웹빌더 UI 패널 -->
-    <!-- ========================================= -->
-    
     <button class="open-builder-btn" id="openBuilderBtn" onclick="toggleBuilderPanel()">
-        🛠️ 사이트 빌더 모드
+        🛠️ 디테일 프로 빌더
     </button>
 
     <div class="builder-panel" id="builderPanel">
@@ -336,77 +288,87 @@
         </div>
         <div class="builder-body">
             
-            <!-- 1. 섹션(구역) 디자인 편집기 -->
             <div class="builder-section">
-                <h3 class="builder-section-title">📐 섹션(구역) 편집</h3>
+                <h3 class="builder-section-title">📐 섹션 디자인 및 여백</h3>
                 <div class="control-group">
                     <label>편집할 구역 선택</label>
                     <select id="sectionSelector" onchange="loadSectionSettings()">
-                        <option value="sec-header">상단 메뉴바 (Header)</option>
-                        <option value="sec-hero">메인 타이틀 영역</option>
-                        <option value="sec-banner">중앙 배너 영역</option>
-                        <option value="sec-intro">소개 텍스트 영역</option>
-                        <option value="sec-footer">하단 영역 (Footer)</option>
+                        <option value="sec-header">1. 상단 메뉴바 (Header)</option>
+                        <option value="sec-hero">2. 메인 타이틀 영역 (Hero)</option>
+                        <option value="sec-banner">3. 중앙 배너 영역</option>
+                        <option value="sec-speakers">4. 강사진 소개 영역</option>
+                        <option value="sec-intro">5. 인트로 텍스트 영역</option>
+                        <option value="sec-timetable">6. 타임테이블 영역</option>
+                        <option value="sec-footer">7. 하단 영역 (Footer)</option>
                     </select>
                 </div>
                 
                 <div class="control-group">
-                    <label>배경 색상 변경</label>
+                    <label>배경 색상 지정</label>
                     <input type="color" id="secBgColor" onchange="updateSectionBgColor(this.value)">
                 </div>
 
                 <div class="control-group">
-                    <label>배경 이미지 등록 (선택)</label>
+                    <label>배경 이미지 삽입</label>
                     <input type="file" accept="image/*" id="secBgImage" onchange="updateSectionBgImage(this)">
                 </div>
 
                 <div class="control-group">
-                    <label>섹션 상하 여백 사이즈 (Padding)</label>
-                    <input type="range" id="secPadding" min="10" max="200" value="60" oninput="updateSectionPadding(this.value)">
-                    <div class="value-display" id="secPaddingVal">60px</div>
+                    <label>위쪽 여백 (Padding Top)</label>
+                    <input type="range" id="secPadTop" min="0" max="250" value="60" oninput="updateSectionPadding('top', this.value)">
+                    <div class="value-display" id="secPadTopVal">60px</div>
+                </div>
+
+                <div class="control-group">
+                    <label>아래쪽 여백 (Padding Bottom)</label>
+                    <input type="range" id="secPadBottom" min="0" max="250" value="60" oninput="updateSectionPadding('bottom', this.value)">
+                    <div class="value-display" id="secPadBottomVal">60px</div>
                 </div>
             </div>
 
-            <!-- 2. 이미지 컴포넌트 편집기 -->
             <div class="builder-section">
-                <h3 class="builder-section-title">🖼️ 이미지 사이즈/교체</h3>
+                <h3 class="builder-section-title">🖼️ 이미지 추가 및 크기 변경</h3>
                 <div class="control-group">
-                    <label>편집할 이미지 선택</label>
+                    <label>대상 이미지 선택</label>
                     <select id="imageSelector" onchange="loadImageSettings()">
-                        <option value="img-top-logo">좌측 상단 얇은 로고</option>
-                        <option value="img-hero-logo">메인 중앙 큰 로고</option>
-                        <option value="img-remodeling">리모델링 사진 (배너)</option>
-                        <option value="img-newbuild">신축 사진 (배너)</option>
+                        <optgroup label="로고 및 배너">
+                            <option value="img-top-logo">상단 네비게이션 로고</option>
+                            <option value="img-hero-logo">메인 영역 큰 로고</option>
+                            <option value="img-remodeling">리모델링 배너 사진</option>
+                            <option value="img-newbuild">신축 배너 사진</option>
+                        </optgroup>
+                        <optgroup label="강사진 프로필">
+                            <option value="img-speaker-1">강사진 1번 사진</option>
+                            <option value="img-speaker-2">강사진 2번 사진</option>
+                            <option value="img-speaker-3">강사진 3번 사진</option>
+                            <option value="img-speaker-4">강사진 4번 사진</option>
+                            <option value="img-speaker-5">강사진 5번 사진</option>
+                        </optgroup>
                     </select>
                 </div>
 
                 <div class="control-group">
-                    <label>새 이미지 업로드</label>
+                    <label>내 PC 이미지 불러오기</label>
                     <input type="file" accept="image/*" id="imgUploader" onchange="updateImageSource(this)">
                 </div>
 
                 <div class="control-group">
-                    <label>이미지 표시 사이즈 (Width/Height)</label>
-                    <input type="range" id="imgSizeSlider" min="10" max="100" value="100" oninput="updateImageSize(this.value)">
-                    <div class="value-display" id="imgSizeVal">100%</div>
+                    <label>이미지 박스 크기 조절</label>
+                    <input type="range" id="imgSizeSlider" min="20" max="300" value="100" oninput="updateImageSize(this.value)">
+                    <div class="value-display" id="imgSizeVal">100px</div>
                 </div>
             </div>
 
-            <!-- 3. 전역 텍스트 편집기 -->
             <div class="builder-section">
-                <h3 class="builder-section-title">📝 사이트 내용 수정</h3>
-                <p style="font-size: 12px; color: #666; margin-top:0;">버튼을 켜고 웹사이트 글자를 클릭하면 내용을 직접 타이핑하여 수정할 수 있습니다.</p>
+                <h3 class="builder-section-title">📝 텍스트 콘텐츠 수정</h3>
                 <button class="toggle-btn" id="textEditBtn" onclick="toggleTextEditing()">텍스트 편집 모드 켜기</button>
             </div>
 
         </div>
     </div>
 
-    <!-- ========================================= -->
-    <!-- 빌더 구동 자바스크립트 -->
-    <!-- ========================================= -->
     <script>
-        // --- 1. 패널 열기/닫기 ---
+        // 패널 토글
         function toggleBuilderPanel() {
             const panel = document.getElementById('builderPanel');
             const btn = document.getElementById('openBuilderBtn');
@@ -416,70 +378,83 @@
             } else {
                 panel.style.display = 'block';
                 btn.style.display = 'none';
-                loadSectionSettings(); // 패널 열릴때 현재 설정값 로드
+                loadSectionSettings();
                 loadImageSettings();
             }
         }
 
-        // --- 2. 섹션(구역) 편집 로직 ---
+        // --- 섹션 제어 로직 ---
         function loadSectionSettings() {
             const targetId = document.getElementById('sectionSelector').value;
             const targetEl = document.getElementById(targetId);
             if(!targetEl) return;
 
-            // 현재 적용된 패딩값 가져와서 슬라이더에 세팅 (기본 60px)
-            let currentPadding = window.getComputedStyle(targetEl).paddingTop.replace('px', '');
-            document.getElementById('secPadding').value = currentPadding;
-            document.getElementById('secPaddingVal').innerText = currentPadding + 'px';
+            // 현재 패딩값 로드
+            const style = window.getComputedStyle(targetEl);
+            const pt = parseInt(style.paddingTop) || 0;
+            const pb = parseInt(style.paddingBottom) || 0;
+            
+            document.getElementById('secPadTop').value = pt;
+            document.getElementById('secPadTopVal').innerText = pt + 'px';
+            document.getElementById('secPadBottom').value = pb;
+            document.getElementById('secPadBottomVal').innerText = pb + 'px';
         }
 
         function updateSectionBgColor(color) {
-            const targetId = document.getElementById('sectionSelector').value;
-            const targetEl = document.getElementById(targetId);
+            const targetEl = document.getElementById(document.getElementById('sectionSelector').value);
             if(targetEl) {
                 targetEl.style.backgroundColor = color;
-                targetEl.style.backgroundImage = 'none'; // 색상 적용시 이미지는 초기화
+                targetEl.style.backgroundImage = 'none'; 
             }
         }
 
         function updateSectionBgImage(inputElement) {
-            const targetId = document.getElementById('sectionSelector').value;
-            const targetEl = document.getElementById(targetId);
+            const targetEl = document.getElementById(document.getElementById('sectionSelector').value);
             if (targetEl && inputElement.files && inputElement.files[0]) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     targetEl.style.backgroundImage = `url('${e.target.result}')`;
+                    targetEl.style.backgroundColor = 'transparent'; // 이미지 덮어쓰기 위해 배경색 투명화
                 }
                 reader.readAsDataURL(inputElement.files[0]);
             }
         }
 
-        function updateSectionPadding(val) {
-            const targetId = document.getElementById('sectionSelector').value;
-            const targetEl = document.getElementById(targetId);
+        function updateSectionPadding(direction, val) {
+            const targetEl = document.getElementById(document.getElementById('sectionSelector').value);
             if(targetEl) {
-                targetEl.style.paddingTop = val + 'px';
-                targetEl.style.paddingBottom = val + 'px';
-                document.getElementById('secPaddingVal').innerText = val + 'px';
+                if (direction === 'top') {
+                    targetEl.style.paddingTop = val + 'px';
+                    document.getElementById('secPadTopVal').innerText = val + 'px';
+                } else {
+                    targetEl.style.paddingBottom = val + 'px';
+                    document.getElementById('secPadBottomVal').innerText = val + 'px';
+                }
             }
         }
 
-        // --- 3. 이미지 편집 로직 ---
+        // --- 이미지 제어 로직 ---
         function loadImageSettings() {
             const targetId = document.getElementById('imageSelector').value;
-            document.getElementById('imgUploader').value = ''; // 파일 선택창 초기화
+            document.getElementById('imgUploader').value = ''; 
             
-            // 로고는 높이(Height), 배너 사진은 너비(Width) 기준으로 사이즈 조절
+            const slider = document.getElementById('imgSizeSlider');
             let currentSize = 100;
-            if(targetId.includes('logo')) {
-                document.getElementById('imgSizeSlider').max = 200; // 로고는 최대 200px
+
+            if (targetId.includes('logo')) {
+                slider.max = 200;
                 currentSize = document.getElementById(targetId).clientHeight || 35;
-                document.getElementById('imgSizeVal').innerText = currentSize + 'px';
-            } else {
-                document.getElementById('imgSizeSlider').max = 100; // 배너는 최대 100%
-                document.getElementById('imgSizeVal').innerText = '가로 비율 설정';
+                document.getElementById('imgSizeVal').innerText = currentSize + 'px (높이)';
+            } else if (targetId.includes('speaker')) {
+                slider.max = 300;
+                currentSize = document.getElementById('wrap-' + targetId.replace('img-', '')).clientWidth || 100;
+                document.getElementById('imgSizeVal').innerText = currentSize + 'px (원형 크기)';
+            } else { // 배너 이미지
+                slider.max = 100; // % 처리
+                currentSize = 100;
+                document.getElementById('imgSizeVal').innerText = '비율 조절';
             }
-            document.getElementById('imgSizeSlider').value = currentSize;
+            slider.value = currentSize;
         }
 
         function updateImageSource(inputElement) {
@@ -490,11 +465,11 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     targetEl.src = e.target.result;
-                    targetEl.style.display = 'block'; // 이미지 보이기
+                    targetEl.style.display = 'block'; 
                     
-                    // 플레이스홀더 텍스트가 있으면 숨기기
-                    const placeholder = document.getElementById(targetId + '-placeholder');
-                    if (placeholder) placeholder.style.display = 'none';
+                    // 더미 텍스트 숨기기
+                    const txtPlaceholder = document.getElementById(targetId.replace('img-', 'txt-'));
+                    if (txtPlaceholder) txtPlaceholder.style.display = 'none';
                 }
                 reader.readAsDataURL(inputElement.files[0]);
             }
@@ -504,21 +479,26 @@
             const targetId = document.getElementById('imageSelector').value;
             const targetEl = document.getElementById(targetId);
             
-            if(targetEl) {
-                // 로고는 px(높이)로, 일반 이미지는 %(너비)로 조절
-                if(targetId.includes('logo')) {
-                    targetEl.style.height = val + 'px';
-                    targetEl.style.width = 'auto'; // 비율 유지
-                    document.getElementById('imgSizeVal').innerText = val + 'px (높이)';
-                } else {
-                    targetEl.style.width = val + '%';
-                    targetEl.style.height = '100%'; 
-                    document.getElementById('imgSizeVal').innerText = val + '% (너비)';
+            if(!targetEl) return;
+
+            if (targetId.includes('logo')) {
+                targetEl.style.height = val + 'px';
+                document.getElementById('imgSizeVal').innerText = val + 'px (높이)';
+            } else if (targetId.includes('speaker')) {
+                const wrapper = document.getElementById('wrap-' + targetId.replace('img-', ''));
+                if (wrapper) {
+                    wrapper.style.width = val + 'px';
+                    wrapper.style.height = val + 'px';
+                    document.getElementById('imgSizeVal').innerText = val + 'px (원형 크기)';
                 }
+            } else {
+                targetEl.style.width = val + '%';
+                targetEl.style.height = '100%'; 
+                document.getElementById('imgSizeVal').innerText = val + '% (너비)';
             }
         }
 
-        // --- 4. 텍스트 편집 로직 ---
+        // --- 텍스트 제어 로직 ---
         function toggleTextEditing() {
             const body = document.getElementById('main-body');
             const btn = document.getElementById('textEditBtn');
